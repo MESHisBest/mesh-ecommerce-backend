@@ -1,6 +1,6 @@
 # API="https://damp-falls-64365.herokuapp.com"
 # URL_PATH="/products"
-API="https://damp-falls-64365.herokuapp.com"
+API="http://localhost:4741"
 URL_PATH="/products"
 
 curl "${API}${URL_PATH}" \
