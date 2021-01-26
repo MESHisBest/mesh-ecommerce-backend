@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API="http://localhost:4741"
+API="https://damp-falls-64365.herokuapp.com"
 URL_PATH="/change-password"
 
 curl "${API}${URL_PATH}/" \
