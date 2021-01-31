@@ -3,8 +3,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-const stripe = require('stripe')('pk_test_51IEGu1Ghx9lBEd2LFESgL6KMB8xKyKyXxLakZS8quq7Jw4tCG6z9YWnf4QTgpYrD0tuA0NggB4YtkMVlfHi2Iw6N001yeVRaGb')
-
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
@@ -52,21 +50,6 @@ app.use(auth)
 // The method `.use` sets up middleware for the Express application
 app.use(express.json())
 
-// stripe below
-app.use(express.static('.'))
-const calculatedOrderAmount = items => {
-  return items * 100
-}
-app.post('/create-payment-intent', async (req, res) => {
-  const { items } = req.body
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculatedOrderAmount(items),
-    currency: 'usd'
-  })
-  res.send({
-    clientSecret: paymentIntent.client_secret
-  })
-})
 // this parses requests sent by `$.ajax`, which use a different content type
 app.use(express.urlencoded({ extended: true }))
 
