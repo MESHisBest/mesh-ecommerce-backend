@@ -17,8 +17,8 @@ app.post('/payment', async (req, res) => {
 
   const { product, token } = req.body
   console.log('Product', product)
-  console.log('Product Name', product.name)
-  console.log('Product Price', product.price)
+  console.log('Product Name', product.product.name)
+  console.log('Product Price', product.product.price)
   const idempotencyKey = uuidV4()
 
   return stripe.customers.create({
@@ -27,11 +27,11 @@ app.post('/payment', async (req, res) => {
   })
     .then(customer => {
       stripe.charges.create({
-        amount: product.price * 100,
+        amount: product.product.price * 100,
         currency: 'USD',
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchase of ${product.name}`
+        description: `Purchase of ${product.product.name}`
       },
       {idempotencyKey})
     })
