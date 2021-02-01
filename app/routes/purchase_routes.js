@@ -20,6 +20,7 @@ router.post('/purchases', requireToken, (req, res, next) => {
     })
     .catch(next)
 })
+
 // INDEX
 router.get('/purchases', requireToken, (req, res, next) => {
   Purchase.find()

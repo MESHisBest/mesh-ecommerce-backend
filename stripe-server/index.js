@@ -1,8 +1,7 @@
 const cors = require('cors')
 const express = require('express')
 const stripe = require('stripe')('sk_test_51IF7lSC1DE44tNVI9l6iJYaNb0qYrvId80Pt3GI5ujMLr6ovrdDCGfyf80u9YXDSdXTvPyeXeKAzPB2XzdLoZ8FH00yJEE38IY')
-const uuid = require('uuid')
-
+const { v4: uuidV4 } = require('uuid')
 const app = express()
 
 app.use(express.json())
@@ -18,8 +17,9 @@ app.post('/payment', async (req, res) => {
 
   const { product, token } = req.body
   console.log('Product', product)
-  console.log('Price', product.price)
-  const idempotencyKey = uuid()
+  console.log('Product Name', product.name)
+  console.log('Product Price', product.price)
+  const idempotencyKey = uuidV4()
 
   return stripe.customers.create({
     email: token.email,
