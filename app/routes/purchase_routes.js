@@ -12,11 +12,12 @@ const router = express.Router()
 // ROUTES
 // CREATE
 router.post('/purchases', requireToken, (req, res, next) => {
-  req.body.purchase.owner = req.user.id
-  Purchase.create(req.body.purchase)
+  console.log(req.body)
+  req.body.product.owner = req.user._id
+  Purchase.create(req.body.product)
     .then(handle404)
-    .then(purchase => {
-      res.status(201).json({ purchase: purchase.toObject() })
+    .then(product => {
+      res.status(201).json({ product: product.toObject() })
     })
     .catch(next)
 })
