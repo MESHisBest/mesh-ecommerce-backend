@@ -10,25 +10,21 @@ app.use(cors())
 // route
 
 app.post('/payment', async (req, res) => {
-  console.log('Request:', req.body)
+  const { product, stripeToken } = req.body
 
-  const { product, token } = req.body
-  console.log('Product', product)
-  console.log('Product Name', product.product.name)
-  console.log('Product Price', product.product.price)
   const idempotencyKey = uuidV4()
 
   return stripe.customers.create({
-    email: token.email,
-    source: token.id
+    email: stripeToken.email,
+    source: stripeToken.id
   })
     .then(customer => {
       stripe.charges.create({
-        amount: product.product.price * 100,
+        amount: product.price * 100,
         currency: 'USD',
         customer: customer.id,
-        receipt_email: token.email,
-        description: `Purchase of ${product.product.name}`
+        receipt_email: stripeToken.email,
+        description: `Purchase of ${product.name}`
       },
       {idempotencyKey})
     })
