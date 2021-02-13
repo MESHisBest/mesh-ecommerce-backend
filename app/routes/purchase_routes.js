@@ -12,7 +12,6 @@ const router = express.Router()
 // ROUTES
 // CREATE
 router.post('/purchases', requireToken, (req, res, next) => {
-  console.log('request body', req.body.purchase)
   req.body.purchase.owner = req.user._id
   Purchase.create(req.body.purchase)
     .then(handle404)
