@@ -7,7 +7,7 @@ const purchaseSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    required: false
   },
   price: {
     type: Number,
@@ -15,7 +15,7 @@ const purchaseSchema = new mongoose.Schema({
   },
   picture_url: {
     type: String,
-    required: true
+    required: false
   },
   review: {
     type: String,
@@ -23,8 +23,7 @@ const purchaseSchema = new mongoose.Schema({
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
 }, {
   timestamps: true

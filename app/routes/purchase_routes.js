@@ -12,7 +12,7 @@ const router = express.Router()
 // ROUTES
 // CREATE
 router.post('/purchases', requireToken, (req, res, next) => {
-  req.body.purchase.owner = req.user.id
+  req.body.purchase.owner = req.user._id
   Purchase.create(req.body.purchase)
     .then(handle404)
     .then(purchase => {
@@ -23,7 +23,7 @@ router.post('/purchases', requireToken, (req, res, next) => {
 
 // INDEX
 router.get('/purchases', requireToken, (req, res, next) => {
-  Purchase.find()
+  Purchase.find({ owner: req.user._id })
     .then(purchases => {
       return purchases.map(purchase => purchase.toObject())
     })
