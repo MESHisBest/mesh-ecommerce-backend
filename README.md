@@ -1,3 +1,15 @@
+
+## API Routes
+|      URI       |   Description |  Method  |
+|:--------------:|:-------------:|:--------:|
+|      /         |   Home page   |    GET   |
+|   /sign-up     | create account|   POST   |
+|   /sign-in     |    log in     |   POST   |
+|  /Auth-home    |authorized home|    GET   |
+|/change-password|    change pw  |   PATCH  |
+|  /product_name |   view item   |    GET   |
+|/create_purchase|    buy item   |   POST   |
+
 ### What is MESH?
 MESH is an e-commerce platform that aims to promote and handle the purchasing of consumer electronics.
 Guests can see all the products from the home page.
@@ -34,7 +46,6 @@ One of the first areas we focused on, was making sure the site had options to si
 
 ### Problem-Solving Strategy
 Our team has found that when there is a problem, we would explain it to the whole team and discuss potential work-arounds, or we collectivley search for online resources that could fix the problem. Any updates or fixes to bugs would be communicated to the team as well.
-
 
 
 ## ERD
